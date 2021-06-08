@@ -346,8 +346,8 @@ function index({ wetherdata }) {
 
 				{/* page 2 */}
 
-				<div className='h-screen'>
-					<div className='current h-auto m-5 sm:m-15 md:mr-20 md:m-10 md:ml-20 p-10 w-auto'>
+				<div className='h-screen mt-40 sm:mt-0'>
+					<div className='current m-5 sm:m-15 md:mr-20 md:m-10 md:ml-20 p-10 w-auto '>
 						<div className='sm:flex sm:flex-row'>
 							{/* left section */}
 							<div className='sm:w-1/2 sm:mr-3 sm:ml-3 h-full '>
@@ -364,7 +364,7 @@ function index({ wetherdata }) {
 										Fill_Color='rgba(0,0,128,0.6)'
 									/>
 								</div>
-								<div className='sm:m-5 w-auto mb-3'>
+								<div className='sm:m-5 w-auto mb-3 '>
 									<Chart
 										c_Title='Humidty'
 										Lables={cLabel}
