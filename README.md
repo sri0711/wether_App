@@ -1,7 +1,7 @@
 
 ## Getting Started
 
-![](blob:https://vercel.com/7a15ebb4-b7f3-4c28-b799-c95856f37dd3)
+![screeen shot](https://github.com/sri0711/wether_App/blob/main/public/scr.png)
 
 ### If you want check this project please follow steps below:
 ```bash
