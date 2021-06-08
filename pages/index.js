@@ -17,7 +17,7 @@ weekday[6] = 'Sat';
 
 const lat_lon = async (props) => {
 	const location_input = props;
-	const url = `http://api.openweathermap.org/geo/1.0/direct?q=${location_input}&limit=1&appid=${process.env.apikey}`;
+	const url = `https://api.openweathermap.org/geo/1.0/direct?q=${location_input}&limit=1&appid=${process.env.apikey}`;
 	const raw = await fetch(url);
 	const data = await raw.json();
 	const lat = data[0].lat;
