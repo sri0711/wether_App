@@ -4,7 +4,6 @@ import Chart from '../components/Chart';
 import Charts from '../components/Charts';
 import Current from '../components/Current';
 import Table from '../components/Table';
-import nextSEO from 'next-seo/lib/meta/nextSEO';
 //globaly variable transefer by using usestate
 
 var weekday = new Array(7);
