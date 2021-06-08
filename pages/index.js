@@ -257,31 +257,46 @@ function index({ wetherdata }) {
 					content='width=device-width, initial-scale=1.0'
 				/>
 				<link rel='shortcut icon' href='cloudy.ico' type='image/x-icon' />
+				{/* seo section */}
+				{/* Primary Meta Tags  */}
+				<title>Weather App</title>
+				<meta name='title' content='Weather App' />
+				<meta
+					name='description'
+					content='simple to view  your wether details'
+				/>
+
+				{/* Open Graph / Facebook */}
+				<meta property='og:type' content='website' />
+				<meta property='og:url' content='https://wether-app.vercel.app/' />
+				<meta property='og:title' content='Weather App' />
+				<meta
+					property='og:description'
+					content='simple to view  your wether details'
+				/>
+				<meta
+					property='og:image'
+					content='https://github.com/sri0711/wether_App/blob/main/public/scr.png)'
+				/>
+
+				{/* Twitter */}
+				<meta property='twitter:card' content='summary_large_image' />
+				<meta
+					property='twitter:url'
+					content='https://wether-app.vercel.app/'
+				/>
+				<meta property='twitter:title' content='Weather App' />
+				<meta
+					property='twitter:description'
+					content='simple to view  your wether details'
+				/>
+				<meta
+					property='twitter:image'
+					content='https://github.com/sri0711/wether_App/blob/main/public/scr.png)'
+				/>
 				<title>Weather App</title>
 			</Head>
-			<NextSEO
-				title='Weather App'
-				description='simple to view  your wether details'
-				openGraph={{
-					url: 'https://wether-app.vercel.app/',
-					title: 'Weather App',
-					description: 'Open Graph Description',
-					images: [
-						{
-							url: 'https://github.com/sri0711/wether_App/blob/main/public/scr.png',
-							width: 800,
-							height: 600,
-							alt: 'Screen Shot'
-						}
-					],
-					site_name: 'Weather App'
-				}}
-				twitter={{
-					handle: '@handle',
-					site: '@site',
-					cardType: 'summary_large_image'
-				}}
-			/>
+
 			<div>
 				{/* page 1 */}
 				<div className='h-screen mb-5'>
