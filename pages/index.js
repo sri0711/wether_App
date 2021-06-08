@@ -1,9 +1,11 @@
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import React, { useState } from 'react';
 import Chart from '../components/Chart';
 import Charts from '../components/Charts';
 import Current from '../components/Current';
 import Table from '../components/Table';
+import nextSEO from 'next-seo/lib/meta/nextSEO';
 //globaly variable transefer by using usestate
 
 var weekday = new Array(7);
@@ -23,7 +25,6 @@ const lat_lon = async (props) => {
 	const lat = data[0].lat;
 	const lon = data[0].lon;
 	return { lat: lat, lon: lon };
-	
 };
 const weatherData = async (cordination) => {
 	const lat = cordination.lat;
@@ -41,12 +42,10 @@ const logWethear = async (e) => {
 	return dummy;
 };
 
-const datePharser =(rawDate)=>{
-	let date = new Date(rawDate*1000)
-	return `${('0' + date.getHours()).slice(
-		-2
-	)}:${date.getMinutes()}`
-}
+const datePharser = (rawDate) => {
+	let date = new Date(rawDate * 1000);
+	return `${('0' + date.getHours()).slice(-2)}:${date.getMinutes()}`;
+};
 export async function getStaticProps() {
 	var lattiLongi = await lat_lon('delhi');
 	const wetherdata = await weatherData(lattiLongi);
@@ -78,59 +77,57 @@ function index({ wetherdata }) {
 	let crticon = current_Weather.weather[0].icon;
 
 	// play with date
-	let crtSunr = datePharser(current_Weather.sunrise)
-	let crtSuns = datePharser(current_Weather.sunset)
+	let crtSunr = datePharser(current_Weather.sunrise);
+	let crtSuns = datePharser(current_Weather.sunset);
 
-	// play with weekly data 
+	// play with weekly data
 
-	let delWeekData  = localweatherData['daily']
-
+	let delWeekData = localweatherData['daily'];
 
 	// weekly humitidity data
 
-	let crtweekHumi = []
+	let crtweekHumi = [];
 	for (let i = 0; i <= 7; i++) {
-		crtweekHumi.push(delWeekData[i].humidity)
+		crtweekHumi.push(delWeekData[i].humidity);
 	}
 
 	// week label
 
 	let crt_Week = [];
-		for (let i = 0; i <= 7; i++) {
-			let date = new Date(delWeekData[i].dt * 1000);
-			crt_Week.push(weekday[date.getDay()]);
-		}
+	for (let i = 0; i <= 7; i++) {
+		let date = new Date(delWeekData[i].dt * 1000);
+		crt_Week.push(weekday[date.getDay()]);
+	}
 
 	// weekly temp data
 
-	let crtWeekTempMin =[]
+	let crtWeekTempMin = [];
 	for (let i = 0; i <= 7; i++) {
-		crtWeekTempMin.push(Math.floor(delWeekData[i].temp.min -273))
+		crtWeekTempMin.push(Math.floor(delWeekData[i].temp.min - 273));
 	}
 
 	// weekly temp max data
 
-	let crtWeekTempMax =[]
+	let crtWeekTempMax = [];
 	for (let i = 0; i <= 7; i++) {
-		crtWeekTempMax.push(Math.floor(delWeekData[i].temp.max -273))
+		crtWeekTempMax.push(Math.floor(delWeekData[i].temp.max - 273));
 	}
-	
+
 	// delhi week sun rise data
 
-	let del_weekSrise =[]
-		for (let i = 0; i <= 7; i++) {
-			let del_sunRise =datePharser( delWeekData[i].sunrise)
-			del_weekSrise.push(del_sunRise)
-		}
+	let del_weekSrise = [];
+	for (let i = 0; i <= 7; i++) {
+		let del_sunRise = datePharser(delWeekData[i].sunrise);
+		del_weekSrise.push(del_sunRise);
+	}
 
 	// delhi week sun set Data
 
-	let del_weekSset =[]
-		for (let i = 0; i <= 7; i++) {
-			let del_sunSet = datePharser(delWeekData[i].sunset)
-			del_weekSset.push(del_sunSet)
-		}
-
+	let del_weekSset = [];
+	for (let i = 0; i <= 7; i++) {
+		let del_sunSet = datePharser(delWeekData[i].sunset);
+		del_weekSset.push(del_sunSet);
+	}
 
 	// use state variables for the problem
 
@@ -147,9 +144,8 @@ function index({ wetherdata }) {
 	const [cLabel, setcLabel] = useState(crt_Week);
 	const [miTemp, setmiTemp] = useState(crtWeekTempMin);
 	const [maTemp, setmaTemp] = useState(crtWeekTempMax);
-	const [weekSr ,setweekSr] = useState(del_weekSrise)
-	const [weekSs ,setweekSs] = useState(del_weekSset)
-
+	const [weekSr, setweekSr] = useState(del_weekSrise);
+	const [weekSs, setweekSs] = useState(del_weekSset);
 
 	// weather data
 
@@ -180,20 +176,20 @@ function index({ wetherdata }) {
 
 		// getting sun Raise
 
-		let weekSrise =[]
+		let weekSrise = [];
 		for (let i = 0; i <= 7; i++) {
-			let sunRise =datePharser( rawdata[i].sunrise)
-			weekSrise.push(sunRise)
+			let sunRise = datePharser(rawdata[i].sunrise);
+			weekSrise.push(sunRise);
 		}
-		setweekSr(weekSrise)
+		setweekSr(weekSrise);
 		// getting sun Set
 
-		let weekSset =[]
+		let weekSset = [];
 		for (let i = 0; i <= 7; i++) {
-			let sunSet = datePharser(rawdata[i].sunset)
-			weekSset.push(sunSet)
+			let sunSet = datePharser(rawdata[i].sunset);
+			weekSset.push(sunSet);
 		}
-		setweekSs(weekSset)
+		setweekSs(weekSset);
 
 		// week Minimum temp
 
@@ -228,9 +224,8 @@ function index({ wetherdata }) {
 
 		// date section of the project
 
-		
-		let mySunr = datePharser(fetchdata['current'].sunrise)
-		let mySuns = datePharser(fetchdata['current'].sunset)
+		let mySunr = datePharser(fetchdata['current'].sunrise);
+		let mySuns = datePharser(fetchdata['current'].sunset);
 
 		let fetchTemp = Math.floor(mytemp - 273);
 
@@ -244,7 +239,7 @@ function index({ wetherdata }) {
 		setIconLoc(myicon);
 		setSunr(mySunr);
 		setSuns(mySuns);
-		document.getElementById('form').reset()
+		document.getElementById('form').reset();
 	};
 
 	return (
@@ -264,6 +259,29 @@ function index({ wetherdata }) {
 				<link rel='shortcut icon' href='cloudy.ico' type='image/x-icon' />
 				<title>Weather App</title>
 			</Head>
+			<NextSEO
+				title='Weather App'
+				description='simple to view  your wether details'
+				openGraph={{
+					url: 'https://wether-app.vercel.app/',
+					title: 'Weather App',
+					description: 'Open Graph Description',
+					images: [
+						{
+							url: 'https://github.com/sri0711/wether_App/blob/main/public/scr.png',
+							width: 800,
+							height: 600,
+							alt: 'Screen Shot'
+						}
+					],
+					site_name: 'Weather App'
+				}}
+				twitter={{
+					handle: '@handle',
+					site: '@site',
+					cardType: 'summary_large_image'
+				}}
+			/>
 			<div>
 				{/* page 1 */}
 				<div className='h-screen mb-5'>
@@ -276,7 +294,11 @@ function index({ wetherdata }) {
 						</h1>
 					</div>
 					<div className='flex'>
-						<form onSubmit={newdata} id='form' className='w-full text-center'>
+						<form
+							onSubmit={newdata}
+							id='form'
+							className='w-full text-center'
+						>
 							<input
 								type='text'
 								name='location'
@@ -340,7 +362,11 @@ function index({ wetherdata }) {
 							{/* right section */}
 							<div className=' hidden sm:w-1/2 sm:block'>
 								<p className='text-center'>Sun set and rise timing</p>
-								<Table Lables={cLabel} sunRise={weekSr} sunSet={weekSs} />
+								<Table
+									Lables={cLabel}
+									sunRise={weekSr}
+									sunSet={weekSs}
+								/>
 							</div>
 						</div>
 					</div>
@@ -349,9 +375,9 @@ function index({ wetherdata }) {
 				{/* page 3 */}
 				<div className='h-screen sm:hidden'>
 					<div className='current h-auto m-5 sm:m-15 md:mr-20 md:m-10 md:ml-20 p-10 w-auto'>
-					<p className='text-center'>Sun set and rise timing</p>
+						<p className='text-center'>Sun set and rise timing</p>
 
-					<Table Lables={cLabel} sunRise={weekSr} sunSet={weekSs} />
+						<Table Lables={cLabel} sunRise={weekSr} sunSet={weekSs} />
 					</div>
 				</div>
 			</div>
