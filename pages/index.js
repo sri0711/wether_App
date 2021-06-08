@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { NextSeo } from 'next-seo';
 import React, { useState } from 'react';
 import Chart from '../components/Chart';
 import Charts from '../components/Charts';
