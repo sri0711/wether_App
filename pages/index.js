@@ -118,6 +118,7 @@ function index({ wetherdata }) {
 	let crtWiDeg = current_Weather.wind_deg;
 	let crtUvi = current_Weather.uvi;
 	let crticon = current_Weather.weather[0].icon;
+	let crtrpt = current_Weather.weather[0].description;
 
 	// play with date
 	let crtSunr = datePharser(current_Weather.sunrise);
@@ -188,6 +189,7 @@ function index({ wetherdata }) {
 	const [maTemp, setmaTemp] = useState(crtWeekTempMax);
 	const [weekSr, setweekSr] = useState(del_weekSrise);
 	const [weekSs, setweekSs] = useState(del_weekSset);
+	const [rpt, setrpt] = useState(crtrpt);
 
 	// current wether data
 
@@ -215,6 +217,7 @@ function index({ wetherdata }) {
 		let devWiDeg = devGeoFetch.wind_deg;
 		let devUvi = devGeoFetch.uvi;
 		let devicon = devGeoFetch.weather[0].icon;
+		let devrpt = devGeoFetch.weather[0].description;
 
 		// sunset and sun rise
 		let devSunr = datePharser(devGeoFetch.sunrise);
@@ -229,6 +232,7 @@ function index({ wetherdata }) {
 		setIconLoc(devicon);
 		setSunr(devSunr);
 		setSuns(devSuns);
+		setrpt(devrpt);
 
 		// ////////////////// page 2
 
@@ -364,6 +368,7 @@ function index({ wetherdata }) {
 		let mydeg = fetchdata['current'].wind_deg;
 		let myuvi = fetchdata['current'].uvi;
 		let myicon = fetchdata['current'].weather[0].icon;
+		let myrpt = fetchdata['current'].weather[0].description;
 
 		// date section of the project
 
@@ -382,6 +387,7 @@ function index({ wetherdata }) {
 		setIconLoc(myicon);
 		setSunr(mySunr);
 		setSuns(mySuns);
+		setrpt(myrpt);
 		document.getElementById('form').reset();
 	};
 
@@ -484,6 +490,7 @@ function index({ wetherdata }) {
 						IconLoc={IconLoc}
 						Sunr={Sunr}
 						Suns={Suns}
+						rpt={rpt}
 					/>
 				</div>
 
