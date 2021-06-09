@@ -299,98 +299,102 @@ function index({ wetherdata }) {
 	// weather data
 
 	const newdata = async (e) => {
-		const fetchdata = await logWethear(e);
+		try {
+			const fetchdata = await logWethear(e);
 
-		// play with daily data in the api
+			// play with daily data in the api
 
-		// week hunitidity
+			// week hunitidity
 
-		let rawdata = await fetchdata.daily;
-		let humi = [];
-		for (let i = 0; i <= 7; i++) {
-			humi.push(rawdata[i].humidity);
+			let rawdata = await fetchdata.daily;
+			let humi = [];
+			for (let i = 0; i <= 7; i++) {
+				humi.push(rawdata[i].humidity);
+			}
+
+			sethumiData(humi);
+
+			// week label
+
+			let c_Week = [];
+			for (let i = 0; i <= 7; i++) {
+				let date = new Date(rawdata[i].dt * 1000);
+				c_Week.push(weekday[date.getDay()]);
+			}
+
+			setcLabel(c_Week);
+
+			// getting sun Raise
+
+			let weekSrise = [];
+			for (let i = 0; i <= 7; i++) {
+				let sunRise = datePharser(rawdata[i].sunrise);
+				weekSrise.push(sunRise);
+			}
+			setweekSr(weekSrise);
+			// getting sun Set
+
+			let weekSset = [];
+			for (let i = 0; i <= 7; i++) {
+				let sunSet = datePharser(rawdata[i].sunset);
+				weekSset.push(sunSet);
+			}
+			setweekSs(weekSset);
+
+			// week Minimum temp
+
+			let weekTempmin = [];
+			for (let i = 0; i <= 7; i++) {
+				let tempmin = rawdata[i].temp.min;
+				weekTempmin.push(Math.floor(tempmin - 273));
+			}
+			setmiTemp(weekTempmin);
+
+			// week Maximum Temp
+
+			let weekTempmax = [];
+			for (let i = 0; i <= 7; i++) {
+				let tempmax = rawdata[i].temp.max;
+				weekTempmax.push(Math.floor(tempmax - 273));
+			}
+			setmaTemp(weekTempmax);
+
+			// place and current data
+
+			const place = e.target.location.value;
+			const UpperPlace = place.charAt(0).toUpperCase() + place.slice(1);
+			setLocation(UpperPlace);
+
+			let mytemp = fetchdata['current'].temp;
+			let myhumi = fetchdata['current'].humidity;
+			let myspeed = fetchdata['current'].wind_speed;
+			let mydeg = fetchdata['current'].wind_deg;
+			let myuvi = fetchdata['current'].uvi;
+			let myicon = fetchdata['current'].weather[0].icon;
+			let myrpt = fetchdata['current'].weather[0].description;
+
+			// date section of the project
+
+			let mySunr = datePharser(fetchdata['current'].sunrise);
+			let mySuns = datePharser(fetchdata['current'].sunset);
+
+			let fetchTemp = Math.floor(mytemp - 273);
+
+			// updating my new fetching data
+
+			setTemp(fetchTemp);
+			setHumi(myhumi);
+			setWiSpeed(myspeed);
+			setWiDeg(mydeg);
+			setUvi(myuvi);
+			setIconLoc(myicon);
+			setSunr(mySunr);
+			setSuns(mySuns);
+			setrpt(myrpt);
+			document.getElementById('form').reset();
+		} catch (e) {
+			alert('Please Enter valid location');
 		}
-
-		sethumiData(humi);
-
-		// week label
-
-		let c_Week = [];
-		for (let i = 0; i <= 7; i++) {
-			let date = new Date(rawdata[i].dt * 1000);
-			c_Week.push(weekday[date.getDay()]);
-		}
-
-		setcLabel(c_Week);
-
-		// getting sun Raise
-
-		let weekSrise = [];
-		for (let i = 0; i <= 7; i++) {
-			let sunRise = datePharser(rawdata[i].sunrise);
-			weekSrise.push(sunRise);
-		}
-		setweekSr(weekSrise);
-		// getting sun Set
-
-		let weekSset = [];
-		for (let i = 0; i <= 7; i++) {
-			let sunSet = datePharser(rawdata[i].sunset);
-			weekSset.push(sunSet);
-		}
-		setweekSs(weekSset);
-
-		// week Minimum temp
-
-		let weekTempmin = [];
-		for (let i = 0; i <= 7; i++) {
-			let tempmin = rawdata[i].temp.min;
-			weekTempmin.push(Math.floor(tempmin - 273));
-		}
-		setmiTemp(weekTempmin);
-
-		// week Maximum Temp
-
-		let weekTempmax = [];
-		for (let i = 0; i <= 7; i++) {
-			let tempmax = rawdata[i].temp.max;
-			weekTempmax.push(Math.floor(tempmax - 273));
-		}
-		setmaTemp(weekTempmax);
-
-		// place and current data
-
-		const place = e.target.location.value;
-		const UpperPlace = place.charAt(0).toUpperCase() + place.slice(1);
-		setLocation(UpperPlace);
-
-		let mytemp = fetchdata['current'].temp;
-		let myhumi = fetchdata['current'].humidity;
-		let myspeed = fetchdata['current'].wind_speed;
-		let mydeg = fetchdata['current'].wind_deg;
-		let myuvi = fetchdata['current'].uvi;
-		let myicon = fetchdata['current'].weather[0].icon;
-		let myrpt = fetchdata['current'].weather[0].description;
-
-		// date section of the project
-
-		let mySunr = datePharser(fetchdata['current'].sunrise);
-		let mySuns = datePharser(fetchdata['current'].sunset);
-
-		let fetchTemp = Math.floor(mytemp - 273);
-
-		// updating my new fetching data
-
-		setTemp(fetchTemp);
-		setHumi(myhumi);
-		setWiSpeed(myspeed);
-		setWiDeg(mydeg);
-		setUvi(myuvi);
-		setIconLoc(myicon);
-		setSunr(mySunr);
-		setSuns(mySuns);
-		setrpt(myrpt);
-		document.getElementById('form').reset();
 	};
 
 	return (
