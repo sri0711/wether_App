@@ -86,16 +86,6 @@ function index({ wetherdata }) {
 		}
 	};
 
-	const showPosition = async (position) => {
-		let lat = position.coords.latitude;
-		let lon = position.coords.longitude;
-		let locAtion = { lat: lat, lon: lon };
-		const geoFetch = await weatherData(locAtion);
-		setrawWetherdata(geoFetch);
-		const geoLoc = await getPlace(locAtion);
-		setLocation(geoLoc);
-	};
-
 	function showError(error) {
 		switch (error.code) {
 			case error.PERMISSION_DENIED:
@@ -199,6 +189,107 @@ function index({ wetherdata }) {
 	const [weekSr, setweekSr] = useState(del_weekSrise);
 	const [weekSs, setweekSs] = useState(del_weekSset);
 
+	// current wether data
+
+	const showPosition = async (position) => {
+		let lat = position.coords.latitude;
+		let lon = position.coords.longitude;
+		let locAtion = { lat: lat, lon: lon };
+
+		const geoLoc = await getPlace(locAtion);
+		setLocation(geoLoc);
+
+		// device location update section and play
+
+		const geoFetch = await weatherData(locAtion);
+
+		// page1
+
+		const devGeoFetch = geoFetch['current'];
+
+		// temp for device and main page
+
+		let dev_temp = Math.floor(devGeoFetch.temp - 273);
+		let devhumitidity = devGeoFetch.humidity;
+		let devWiSpeed = devGeoFetch.wind_speed;
+		let devWiDeg = devGeoFetch.wind_deg;
+		let devUvi = devGeoFetch.uvi;
+		let devicon = devGeoFetch.weather[0].icon;
+
+		// sunset and sun rise
+		let devSunr = datePharser(devGeoFetch.sunrise);
+		let devSuns = datePharser(devGeoFetch.sunset);
+
+		// update sometjing
+		setTemp(dev_temp);
+		setHumi(devhumitidity);
+		setWiSpeed(devWiSpeed);
+		setWiDeg(devWiDeg);
+		setUvi(devUvi);
+		setIconLoc(devicon);
+		setSunr(devSunr);
+		setSuns(devSuns);
+
+		// ////////////////// page 2
+
+		// play with weekly data
+
+		let locWeekData = geoFetch['daily'];
+
+		// weekly humitidity data
+
+		let devweekHumi = [];
+		for (let i = 0; i <= 7; i++) {
+			devweekHumi.push(locWeekData[i].humidity);
+		}
+
+		// week label
+
+		let dev_Week = [];
+		for (let i = 0; i <= 7; i++) {
+			let date = new Date(locWeekData[i].dt * 1000);
+			dev_Week.push(weekday[date.getDay()]);
+		}
+
+		// weekly temp data
+
+		let devWeekTempMin = [];
+		for (let i = 0; i <= 7; i++) {
+			devWeekTempMin.push(Math.floor(locWeekData[i].temp.min - 273));
+		}
+
+		// weekly temp max data
+
+		let devWeekTempMax = [];
+		for (let i = 0; i <= 7; i++) {
+			devWeekTempMax.push(Math.floor(locWeekData[i].temp.max - 273));
+		}
+
+		// delhi week sun rise data
+
+		let dev_weekSrise = [];
+		for (let i = 0; i <= 7; i++) {
+			let del_sunRise = datePharser(locWeekData[i].sunrise);
+			dev_weekSrise.push(del_sunRise);
+		}
+
+		// delhi week sun set Data
+
+		let dev_weekSset = [];
+		for (let i = 0; i <= 7; i++) {
+			let dev_sunSet = datePharser(locWeekData[i].sunset);
+			dev_weekSset.push(dev_sunSet);
+		}
+
+		// device location based week data update
+
+		sethumiData(devweekHumi);
+		setcLabel(dev_Week);
+		setmiTemp(devWeekTempMin);
+		setmaTemp(devWeekTempMax);
+		setweekSr(dev_weekSrise);
+		setweekSs(dev_weekSset);
+	};
 	// weather data
 
 	const newdata = async (e) => {
