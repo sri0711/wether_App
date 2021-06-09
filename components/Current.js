@@ -8,6 +8,9 @@ function Current(props) {
 			<p className='ml-3 mr-3 text-center' style={{ fontSize: 70 }}>
 				{props.Temp}&#186;c
 			</p>
+			<div className='block text-center m-2'>
+				<p>{props.rpt}</p>
+			</div>
 			<div className='flex flex-wrap h-auto justify-between '>
 				<div>
 					<p>Humidity: {props.Humi} %</p>
@@ -37,10 +40,6 @@ function Current(props) {
 						<FiSunrise size={25} /> {props.Sunr}
 					</p>
 					<p>sunrise</p>
-				</div>
-
-				<div className='block text-center m-2'>
-					<p>{props.rpt}</p>
 				</div>
 
 				<div className='block text-center'>

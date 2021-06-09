@@ -89,7 +89,9 @@ function index({ wetherdata }) {
 	function showError(error) {
 		switch (error.code) {
 			case error.PERMISSION_DENIED:
-				alert('User denied the request for Geolocation.');
+				alert(
+					` Turn on location service on your device  (or) User denied the request for Geolocation.`
+				);
 				break;
 			case error.POSITION_UNAVAILABLE:
 				alert('Location information is unavailable.');
