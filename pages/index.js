@@ -25,6 +25,17 @@ const lat_lon = async (props) => {
 	const lon = data[0].lon;
 	return { lat: lat, lon: lon };
 };
+
+const getPlace = async (latiLong) => {
+	const lat = latiLong.lat;
+	const lon = latiLong.lon;
+	const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${process.env.apikey}`;
+	const getres = await fetch(url);
+	const place = await getres.json();
+	const actPlace = await place[0].name;
+	return actPlace;
+};
+
 const weatherData = async (cordination) => {
 	const lat = cordination.lat;
 	const lon = cordination.lon;
@@ -62,9 +73,49 @@ export async function getStaticProps() {
 function index({ wetherdata }) {
 	// useState variable handling for the over all application
 
+	const [rawWetherdata, setrawWetherdata] = useState(wetherdata);
+	const [Location, setLocation] = useState('Delhi');
+
+	// location fetching
+
+	const loadedFunc = () => {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition, showError);
+		} else {
+			alert('unnable to fetch location on your device');
+		}
+	};
+
+	const showPosition = async (position) => {
+		let lat = position.coords.latitude;
+		let lon = position.coords.longitude;
+		let locAtion = { lat: lat, lon: lon };
+		const geoFetch = await weatherData(locAtion);
+		setrawWetherdata(geoFetch);
+		const geoLoc = await getPlace(locAtion);
+		setLocation(geoLoc);
+	};
+
+	function showError(error) {
+		switch (error.code) {
+			case error.PERMISSION_DENIED:
+				alert('User denied the request for Geolocation.');
+				break;
+			case error.POSITION_UNAVAILABLE:
+				alert('Location information is unavailable.');
+				break;
+			case error.TIMEOUT:
+				alert('The request to get user location timed out.');
+				break;
+			case error.UNKNOWN_ERROR:
+				alert('An unknown error occurred.');
+				break;
+		}
+	}
+
 	// delhi data has beem transfered in the default startup
 
-	const localweatherData = wetherdata;
+	const localweatherData = rawWetherdata;
 
 	// current data partion in the function
 
@@ -138,7 +189,6 @@ function index({ wetherdata }) {
 	const [WiSpeed, setWiSpeed] = useState(crtWiSpeed);
 	const [WiDeg, setWiDeg] = useState(crtWiDeg);
 	const [uvi, setUvi] = useState(crtUvi);
-	const [Location, setLocation] = useState('Delhi');
 	const [IconLoc, setIconLoc] = useState(crticon);
 	const [Sunr, setSunr] = useState(crtSunr);
 	const [Suns, setSuns] = useState(crtSuns);
@@ -299,7 +349,7 @@ function index({ wetherdata }) {
 				<title>Weather App</title>
 			</Head>
 
-			<div>
+			<div onLoad={loadedFunc}>
 				{/* page 1 */}
 				<div className='h-screen mb-5'>
 					<div>
