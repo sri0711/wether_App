@@ -519,7 +519,9 @@ function index({ wetherdata }) {
 							</div>
 							{/* right section */}
 							<div className=' hidden sm:w-1/2 sm:block'>
-								<p className='text-center'>Sun set and rise timing</p>
+								<p className='text-center sm:mt-0 sm:text-blue-500'>
+									Sun set and rise timing
+								</p>
 								<Table
 									Lables={cLabel}
 									sunRise={weekSr}
@@ -533,7 +535,9 @@ function index({ wetherdata }) {
 				{/* page 3 */}
 				<div className='h-screen sm:hidden'>
 					<div className='current h-auto m-5 sm:m-15 md:mr-20 md:m-10 md:ml-20 p-10 w-auto'>
-						<p className='text-center'>Sun set and rise timing</p>
+						<p className='text-center  text-blue-500'>
+							Sun set and rise timing
+						</p>
 
 						<Table Lables={cLabel} sunRise={weekSr} sunSet={weekSs} />
 					</div>
