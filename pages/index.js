@@ -43,7 +43,9 @@ const logWethear = async (e) => {
 
 const datePharser = (rawDate) => {
 	let date = new Date(rawDate * 1000);
-	return `${('0' + date.getHours()).slice(-2)}:${date.getMinutes()}`;
+	return `${('0' + date.getHours()).slice(-2)}:${(
+		'0' + date.getMinutes()
+	).slice(-2)}`;
 };
 export async function getStaticProps() {
 	var lattiLongi = await lat_lon('delhi');
