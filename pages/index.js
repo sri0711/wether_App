@@ -394,6 +394,7 @@ function index({ wetherdata }) {
 			document.getElementById('form').reset();
 		} catch (e) {
 			alert('Please Enter valid location');
+			document.getElementById('form').reset();
 		}
 	};
 
