@@ -3,6 +3,8 @@
 
 ![screeen shot](https://github.com/sri0711/wether_App/blob/main/public/scr.png)
 
+***
+
 ### If you want check this project please follow steps below:
 ```bash
 git clone https://github.com/sri0711/wether_App.git
@@ -11,6 +13,8 @@ git clone https://github.com/sri0711/wether_App.git
 
 ```
 please visit and download [weather app](https://github.com/sri0711/wether_App)
+
+***
 
 ## 
 First, run the development server:
@@ -30,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 This project is made up with  **next.JS **. 
 
 
-## You want see the project plese vist
+## You want see the project please vist
 
 just click [weather App](https://wether-app.vercel.app/)
 
