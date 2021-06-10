@@ -35,5 +35,5 @@ This project is made up with  **next.JS **.
 just click [weather App](https://wether-app.vercel.app/)
 
 ***
-###### discailmer  -  weather-app.vercel.app is not available 
+###### disclaimer  -  weather-app.vercel.app is not available 
 
