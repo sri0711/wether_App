@@ -455,7 +455,7 @@ function index({ wetherdata }) {
 
 			<div onLoad={loadedFunc}>
 				{/* page 1 */}
-				<div className='h-screen mb-5'>
+				<div className='h-screen sm:mb-5 mb-15'>
 					<div>
 						<h1
 							className=' text-center font-semibold text-white'
