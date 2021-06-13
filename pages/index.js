@@ -500,6 +500,7 @@ function index({ wetherdata }) {
 						rpt={rpt}
 					/>
 				</div>
+				<div className=' h-5'></div>
 
 				{/* page 2 */}
 
@@ -554,6 +555,7 @@ function index({ wetherdata }) {
 						<Table Lables={cLabel} sunRise={weekSr} sunSet={weekSs} />
 					</div>
 				</div>
+				<div className=' h-12'></div>
 			</div>
 		</div>
 	);
