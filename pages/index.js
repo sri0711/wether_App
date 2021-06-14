@@ -116,14 +116,17 @@ function index({ wetherdata }) {
 
 	const [rawWetherdata, setrawWetherdata] = useState(wetherdata);
 	const [Location, setLocation] = useState('Delhi');
+	const [startloc, setstartloc] = useState(0);
 
 	// location fetching
 
 	const loadedFunc = () => {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition, showError);
-		} else {
-			alert('unnable to fetch location on your device');
+		if (startloc === 0) {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition, showError);
+			} else {
+				alert('unnable to fetch location on your device');
+			}
 		}
 	};
 
@@ -293,6 +296,7 @@ function index({ wetherdata }) {
 		setmaTemp(devWeekTempMax);
 		setweekSr(dev_weekSrise);
 		setweekSs(dev_weekSset);
+		setstartloc(1);
 	};
 	// weather data
 
