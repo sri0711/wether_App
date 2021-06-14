@@ -18,32 +18,40 @@ weekday[6] = 'Sat';
 
 const dataPusher = (prop_value, propcess) => {
 	let aray = [];
+	let proValue = prop_value;
+	let proces = propcess;
 	for (let i = 0; i <= 7; i++) {
-		let data = prop_value[i][propcess];
+		let data = proValue[i][proces];
 		aray.push(data);
 	}
 	return aray;
 };
 const datePusher = (prop_value) => {
 	let aray = [];
+	let proValue = prop_value;
 	for (let i = 0; i <= 7; i++) {
-		let data = new Date(prop_value[i].dt * 1000);
+		let data = new Date(proValue[i].dt * 1000);
 		aray.push(weekday[data.getDay()]);
 	}
 	return aray;
 };
 const tempPusher = (prop_value, propcess, opt) => {
 	let aray = [];
+	let proces = propcess;
+	let proValue = prop_value;
+	let sub = opt;
 	for (let i = 0; i <= 7; i++) {
-		aray.push(Math.floor(prop_value[i][propcess][opt]));
+		aray.push(Math.floor(proValue[i][proces][sub]));
 	}
 	return aray;
 };
 
 const TimePusher = (prop_value, propcess) => {
 	let aray = [];
+	let proValue = prop_value;
+	let proces = propcess;
 	for (let i = 0; i <= 7; i++) {
-		let data = datePharser(prop_value[i][propcess]);
+		let data = datePharser(proValue[i][proces]);
 		aray.push(data);
 	}
 	return aray;
