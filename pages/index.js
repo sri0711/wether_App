@@ -120,7 +120,6 @@ function index({ wetherdata }) {
 	// location fetching
 
 	const loadedFunc = () => {
-		console.log(startloc);
 		if (startloc === 0) {
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(showPosition, showError);
