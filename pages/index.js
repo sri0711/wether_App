@@ -116,7 +116,7 @@ function index({ wetherdata }) {
 
 	const [rawWetherdata, setrawWetherdata] = useState(wetherdata);
 	const [Location, setLocation] = useState('Delhi');
-	const [startloc, setstartloc] = useState(0);
+	let startloc = 0;
 
 	// location fetching
 
@@ -296,7 +296,7 @@ function index({ wetherdata }) {
 		setmaTemp(devWeekTempMax);
 		setweekSr(dev_weekSrise);
 		setweekSs(dev_weekSset);
-		setstartloc(1);
+		startloc = 1;
 	};
 	// weather data
 
