@@ -16,6 +16,47 @@ weekday[4] = 'Thu';
 weekday[5] = 'Fri';
 weekday[6] = 'Sat';
 
+const dataPusher = (prop_value, propcess) => {
+	let aray = [];
+	let proValue = prop_value;
+	let proces = propcess;
+	for (let i = 0; i <= 7; i++) {
+		let data = proValue[i][proces];
+		aray.push(data);
+	}
+	return aray;
+};
+const datePusher = (prop_value) => {
+	let aray = [];
+	let proValue = prop_value;
+	for (let i = 0; i <= 7; i++) {
+		let data = new Date(proValue[i].dt * 1000);
+		aray.push(weekday[data.getDay()]);
+	}
+	return aray;
+};
+const tempPusher = (prop_value, propcess, opt) => {
+	let aray = [];
+	let proces = propcess;
+	let proValue = prop_value;
+	let sub = opt;
+	for (let i = 0; i <= 7; i++) {
+		aray.push(Math.floor(proValue[i][proces][sub]));
+	}
+	return aray;
+};
+
+const TimePusher = (prop_value, propcess) => {
+	let aray = [];
+	let proValue = prop_value;
+	let proces = propcess;
+	for (let i = 0; i <= 7; i++) {
+		let data = datePharser(proValue[i][proces]);
+		aray.push(data);
+	}
+	return aray;
+};
+
 const lat_lon = async (props) => {
 	const location_input = props;
 	const url = `https://api.openweathermap.org/geo/1.0/direct?q=${location_input}&limit=1&appid=${process.env.apikey}`;
@@ -132,48 +173,26 @@ function index({ wetherdata }) {
 
 	// weekly humitidity data
 
-	let crtweekHumi = [];
-	for (let i = 0; i <= 7; i++) {
-		crtweekHumi.push(delWeekData[i].humidity);
-	}
+	let crtweekHumi = dataPusher(delWeekData, 'humidity');
 
 	// week label
 
-	let crt_Week = [];
-	for (let i = 0; i <= 7; i++) {
-		let date = new Date(delWeekData[i].dt * 1000);
-		crt_Week.push(weekday[date.getDay()]);
-	}
+	let crt_Week = datePusher(delWeekData);
 
 	// weekly temp data
 
-	let crtWeekTempMin = [];
-	for (let i = 0; i <= 7; i++) {
-		crtWeekTempMin.push(Math.floor(delWeekData[i].temp.min - 273));
-	}
-
+	let crtWeekTempMin = tempPusher(delWeekData, 'temp', 'min');
 	// weekly temp max data
 
-	let crtWeekTempMax = [];
-	for (let i = 0; i <= 7; i++) {
-		crtWeekTempMax.push(Math.floor(delWeekData[i].temp.max - 273));
-	}
+	let crtWeekTempMax = tempPusher(delWeekData, 'temp', 'max');
 
 	// delhi week sun rise data
 
-	let del_weekSrise = [];
-	for (let i = 0; i <= 7; i++) {
-		let del_sunRise = datePharser(delWeekData[i].sunrise);
-		del_weekSrise.push(del_sunRise);
-	}
+	let del_weekSrise = TimePusher(delWeekData, 'sunrise');
 
 	// delhi week sun set Data
 
-	let del_weekSset = [];
-	for (let i = 0; i <= 7; i++) {
-		let del_sunSet = datePharser(delWeekData[i].sunset);
-		del_weekSset.push(del_sunSet);
-	}
+	let del_weekSset = TimePusher(delWeekData, 'sunset');
 
 	// use state variables for the problem
 
@@ -244,48 +263,27 @@ function index({ wetherdata }) {
 
 		// weekly humitidity data
 
-		let devweekHumi = [];
-		for (let i = 0; i <= 7; i++) {
-			devweekHumi.push(locWeekData[i].humidity);
-		}
+		let devweekHumi = dataPusher(locWeekData, 'humidity');
 
 		// week label
 
-		let dev_Week = [];
-		for (let i = 0; i <= 7; i++) {
-			let date = new Date(locWeekData[i].dt * 1000);
-			dev_Week.push(weekday[date.getDay()]);
-		}
+		let dev_Week = datePusher(locWeekData);
 
 		// weekly temp data
 
-		let devWeekTempMin = [];
-		for (let i = 0; i <= 7; i++) {
-			devWeekTempMin.push(Math.floor(locWeekData[i].temp.min - 273));
-		}
+		let devWeekTempMin = tempPusher(locWeekData, 'temp', 'min');
 
 		// weekly temp max data
 
-		let devWeekTempMax = [];
-		for (let i = 0; i <= 7; i++) {
-			devWeekTempMax.push(Math.floor(locWeekData[i].temp.max - 273));
-		}
+		let devWeekTempMax = tempPusher(locWeekData, 'temp', 'max');
 
 		// delhi week sun rise data
 
-		let dev_weekSrise = [];
-		for (let i = 0; i <= 7; i++) {
-			let del_sunRise = datePharser(locWeekData[i].sunrise);
-			dev_weekSrise.push(del_sunRise);
-		}
+		let dev_weekSrise = TimePusher(locWeekData, 'sunrise');
 
 		// delhi week sun set Data
 
-		let dev_weekSset = [];
-		for (let i = 0; i <= 7; i++) {
-			let dev_sunSet = datePharser(locWeekData[i].sunset);
-			dev_weekSset.push(dev_sunSet);
-		}
+		let dev_weekSset = TimePusher(delWeekData, 'sunset');
 
 		// device location based week data update
 
@@ -307,56 +305,38 @@ function index({ wetherdata }) {
 			// week hunitidity
 
 			let rawdata = await fetchdata.daily;
-			let humi = [];
-			for (let i = 0; i <= 7; i++) {
-				humi.push(rawdata[i].humidity);
-			}
+			let humi = dataPusher(rawdata, 'humidity');
 
 			sethumiData(humi);
 
 			// week label
 
-			let c_Week = [];
-			for (let i = 0; i <= 7; i++) {
-				let date = new Date(rawdata[i].dt * 1000);
-				c_Week.push(weekday[date.getDay()]);
-			}
+			let c_Week = datePusher(rawdata);
 
 			setcLabel(c_Week);
 
 			// getting sun Raise
 
-			let weekSrise = [];
-			for (let i = 0; i <= 7; i++) {
-				let sunRise = datePharser(rawdata[i].sunrise);
-				weekSrise.push(sunRise);
-			}
+			let weekSrise = TimePusher(rawdata, 'sunrise');
+
 			setweekSr(weekSrise);
+
 			// getting sun Set
 
-			let weekSset = [];
-			for (let i = 0; i <= 7; i++) {
-				let sunSet = datePharser(rawdata[i].sunset);
-				weekSset.push(sunSet);
-			}
+			let weekSset = TimePusher(rawdata, 'sunset');
+
 			setweekSs(weekSset);
 
 			// week Minimum temp
 
-			let weekTempmin = [];
-			for (let i = 0; i <= 7; i++) {
-				let tempmin = rawdata[i].temp.min;
-				weekTempmin.push(Math.floor(tempmin - 273));
-			}
+			let weekTempmin = tempPusher(rawdata, 'temp', 'min');
+
 			setmiTemp(weekTempmin);
 
 			// week Maximum Temp
 
-			let weekTempmax = [];
-			for (let i = 0; i <= 7; i++) {
-				let tempmax = rawdata[i].temp.max;
-				weekTempmax.push(Math.floor(tempmax - 273));
-			}
+			let weekTempmax = tempPusher(rawdata, 'temp', 'max');
+
 			setmaTemp(weekTempmax);
 
 			// place and current data
