@@ -115,11 +115,12 @@ function index({ wetherdata }) {
 	// useState variable handling for the over all application
 
 	const [Location, setLocation] = useState('Delhi');
-	let startloc = 0;
+	const [startloc, setstartloc] = useState(0);
 
 	// location fetching
 
 	const loadedFunc = () => {
+		console.log(startloc);
 		if (startloc === 0) {
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -295,7 +296,7 @@ function index({ wetherdata }) {
 		setmaTemp(devWeekTempMax);
 		setweekSr(dev_weekSrise);
 		setweekSs(dev_weekSset);
-		startloc = 1;
+		setstartloc(1);
 	};
 	// weather data
 
