@@ -114,7 +114,6 @@ export async function getStaticProps() {
 function index({ wetherdata }) {
 	// useState variable handling for the over all application
 
-	const rawWetherdata = wetherdata;
 	const [Location, setLocation] = useState('Delhi');
 	let startloc = 0;
 
@@ -151,7 +150,7 @@ function index({ wetherdata }) {
 
 	// delhi data has beem transfered in the default startup
 
-	const localweatherData = rawWetherdata;
+	const localweatherData = wetherdata;
 
 	// current data partion in the function
 
