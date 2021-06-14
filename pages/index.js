@@ -41,7 +41,7 @@ const tempPusher = (prop_value, propcess, opt) => {
 	let proValue = prop_value;
 	let sub = opt;
 	for (let i = 0; i <= 7; i++) {
-		aray.push(Math.floor(proValue[i][proces][sub]));
+		aray.push(Math.floor(proValue[i][proces][sub] -273));
 	}
 	return aray;
 };
