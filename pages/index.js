@@ -516,8 +516,8 @@ function index({ wetherdata }) {
 										Lables={cLabel}
 										C_Data={miTemp}
 										C_Data2={maTemp}
-										LineColor2='red'
-										Fill_Color2='rgba(225,0,0,0.4)'
+										LineColor2='orange'
+										Fill_Color2='rgba(235,122,52,0.4)'
 										LineColor='blue'
 										Fill_Color='rgba(0,0,128,0.6)'
 									/>
