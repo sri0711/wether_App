@@ -33,6 +33,7 @@ function Current(props) {
 						src={`http://openweathermap.org/img/wn/${props.IconLoc}.png`}
 						height={100}
 						width={100}
+						alt='rpt_img'
 					/>
 				</h1>
 			</div>

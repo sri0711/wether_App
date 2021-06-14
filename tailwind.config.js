@@ -5,8 +5,11 @@ module.exports = {
 	theme: {
 		extend: {
 			backgroundImage: (theme) => ({
-				'main-bg': "url('/mushegh-hakobyan-UOJNtLy7IW4-unsplash.jpg')"
+				'main-bg': "url('/720498.svg')"
 			})
+		},
+		backgroundPosition: {
+			right2: 'center  right -30em'
 		}
 	},
 	variants: {

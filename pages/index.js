@@ -400,11 +400,11 @@ function index({ wetherdata }) {
 
 	return (
 		<div
-			className='bg-fixed'
-			style={{
-				backgroundImage: 'url(/720498.jpg)',
-				backgroundSize: 'cover'
-			}}
+			className='bg-fixed bg-main-bg bg-right2  '
+			// style={{
+			// 	backgroundImage: 'url(/720498.svg)',
+			// 	backgroundSize: 'cover'
+			// }}
 		>
 			{/* heading area and meta tag */}
 			<Head>
