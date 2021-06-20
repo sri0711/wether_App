@@ -41,7 +41,7 @@ const tempPusher = (prop_value, propcess, opt) => {
 	let proValue = prop_value;
 	let sub = opt;
 	for (let i = 0; i <= 7; i++) {
-		aray.push(Math.floor(proValue[i][proces][sub] -273));
+		aray.push(Math.floor(proValue[i][proces][sub] - 273));
 	}
 	return aray;
 };
@@ -391,6 +391,10 @@ function index({ wetherdata }) {
 		>
 			{/* heading area and meta tag */}
 			<Head>
+				<meta
+					name='google-site-verification'
+					content='GQtHBqz9XDcBYp7B0ZQ4oJH5YszyF8okpxkXke-HCcc'
+				/>
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1.0'
