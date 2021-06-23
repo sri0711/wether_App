@@ -402,20 +402,19 @@ function index({ wetherdata }) {
 				<link rel='shortcut icon' href='cloudy.ico' type='image/x-icon' />
 				{/* seo section */}
 				{/* Primary Meta Tags  */}
-				<title>Weather App</title>
-				<meta name='title' content='Weather App' />
+				<meta name='title' content='Weather App 𝕚𝕟 𝕟𝕖𝕩𝕥𝕁𝕤' />
 				<meta
 					name='description'
-					content='simple to view  your wether details'
+					content='simple to view  your wether details created by Sri Sathish'
 				/>
 
 				{/* Open Graph / Facebook */}
 				<meta property='og:type' content='website' />
 				<meta property='og:url' content='https://wether-app.vercel.app/' />
-				<meta property='og:title' content='Weather App' />
+				<meta property='og:title' content='Weather App 𝕚𝕟 𝕟𝕖𝕩𝕥𝕁𝕤' />
 				<meta
 					property='og:description'
-					content='simple to view  your wether details'
+					content='simple to view  your wether details created by Sri Sathish'
 				/>
 				<meta
 					property='og:image'
@@ -428,10 +427,10 @@ function index({ wetherdata }) {
 					property='twitter:url'
 					content='https://wether-app.vercel.app/'
 				/>
-				<meta property='twitter:title' content='Weather App' />
+				<meta property='twitter:title' content='Weather App 𝕚𝕟 𝕟𝕖𝕩𝕥𝕁𝕤' />
 				<meta
 					property='twitter:description'
-					content='simple to view  your wether details'
+					content='simple to view  your wether details created by Sri Sathish'
 				/>
 				<meta
 					property='twitter:image'
