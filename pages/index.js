@@ -405,7 +405,7 @@ function index({ wetherdata }) {
 				<meta name='title' content='Weather App 𝕚𝕟 𝕟𝕖𝕩𝕥𝕁𝕤' />
 				<meta
 					name='description'
-					content='simple to view  your wether details created by Sri Sathish'
+					content='simple to view  your weather details created by Sri Sathish'
 				/>
 
 				{/* Open Graph / Facebook */}
@@ -414,7 +414,7 @@ function index({ wetherdata }) {
 				<meta property='og:title' content='Weather App 𝕚𝕟 𝕟𝕖𝕩𝕥𝕁𝕤' />
 				<meta
 					property='og:description'
-					content='simple to view  your wether details created by Sri Sathish'
+					content='simple to view  your weather details created by Sri Sathish'
 				/>
 				<meta
 					property='og:image'
@@ -430,7 +430,7 @@ function index({ wetherdata }) {
 				<meta property='twitter:title' content='Weather App 𝕚𝕟 𝕟𝕖𝕩𝕥𝕁𝕤' />
 				<meta
 					property='twitter:description'
-					content='simple to view  your wether details created by Sri Sathish'
+					content='simple to view  your weather details created by Sri Sathish'
 				/>
 				<meta
 					property='twitter:image'
